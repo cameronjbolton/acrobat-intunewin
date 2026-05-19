@@ -9,6 +9,7 @@ $AcrobatExists = Test-Path $AcrobatPath
 $RegValue = Get-ItemProperty -Path $RegPath -Name $RegName -ErrorAction SilentlyContinue
 
 if ($AcrobatExists -and $RegValue.$RegName -eq $ExpectedValue) {
+    Write-Host "Application and key/value detected"
     exit 0
 }
 else {
