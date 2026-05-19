@@ -14,17 +14,18 @@ if ($process.ExitCode -ne 0) {
     exit $process.ExitCode
 }
 
-$regPath = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"
-$regKey = "bIsSCReducedModeEnforcedEx"
+$regKey = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"
+$regValue = "bIsSCReducedModeEnforcedEx"
 $value = 1
 
-if (-not (Test-Path $regPath)) {
-    New-Item -Path $regPath -Force | Out-Null
+if (-not (Test-Path $regKey)) {
+    Write-Host "No FeatureLockDown reg key. Creating key."
+    New-Item -Path $regKey -Force | Out-Null
 }
 
 New-ItemProperty `
-    -Path $regPath `
-    -Name $regKey `
+    -Path $regKey `
+    -Name $regValue `
     -Value $value `
     -PropertyType DWord `
     -Force | Out-Null
