@@ -1,4 +1,5 @@
 # install.ps1
+# this goes in .\acrobat\source
 
 $ErrorActionPreference = "Stop"
 
